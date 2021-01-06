@@ -15,7 +15,7 @@ jobs:
       TEST: "false"
       CONFIG: Release
       VERSION: 1.0.${{ github.run_number }}
-      PROJECT_FILE_PATH: src/MemberDatabaseDTO.csproj
+      PROJECT_FILE_PATH: src/Common.csproj
       GITHUB_NUGET_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
 
     steps:
