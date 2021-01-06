@@ -52,12 +52,8 @@ jobs:
           /p:Version=${{ env.VERSION }} \
           -o packages
 
-      - name: Publish NuGet
-        # You may pin to the exact commit or the version.
-        # uses: brandedoutcast/publish-nuget@c12b8546b67672ee38ac87bea491ac94a587f7cc
-        uses: brandedoutcast/publish-nuget@v2.5.5
-        with:
-          PROJECT_FILE_PATH: src/Common.csproj
-          PACKAGE_NAME: WahineKai.Common
-          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
-          NUGET_SOURCE: https://nuget.pkg.github.com/wahinekai/index.json}
+      - name: NuGet Push
+        run: |
+          dotnet nuget push packages/*.nupkg \
+            --source ${{ env.NUGET_URL }} \
+            --skip-duplicate
