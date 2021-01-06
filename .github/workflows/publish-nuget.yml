@@ -29,10 +29,10 @@ jobs:
           source-url: ${{ env.NUGET_URL }}
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet ${{ env.PROJECT_FILE_PATH }} restore
 
       - name: Build
-        run: dotnet build \
+        run: dotnet ${{ env.PROJECT_FILE_PATH }} build \
           --no-restore \
           /p:VersionPrefix=${{ env.VERSION }} \
           --configuration ${{ env.CONFIG }} \
@@ -40,7 +40,7 @@ jobs:
 
       - name: Test
         if: ${{ env.TEST == 'true' }}
-        run: dotnet test \
+        run: dotnet ${{ env.PROJECT_FILE_PATH }} test \
           --no-build \
           --configuration ${{ env.CONFIG }} \
           -o out
