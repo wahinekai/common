@@ -36,10 +36,10 @@ jobs:
 
       - name: Test
         if: ${{ env.TEST == 'true' }}
-        run: dotnet test ${{ env.PROJECT_FILE_PATH }} --no-build --no-restore --configuration ${{ env.CONFIG }} -o out
+        run: dotnet test ${{ env.PROJECT_FILE_PATH }} --no-build --configuration ${{ env.CONFIG }} -o out
 
       - name: Package
-        run: dotnet pack ${{ env.PROJECT_FILE_PATH }} --no-build --configuration ${{ env.CONFIG }} /p:Version=${{ env.VERSION }} -o packages
+        run: dotnet pack ${{ env.PROJECT_FILE_PATH }} --no-build --configuration ${{ env.CONFIG }} /p:Version=${{ env.VERSION }} /p:OutputPath=out -o packages
 
       - name: NuGet Push
         run: |
