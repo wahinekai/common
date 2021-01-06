@@ -4,6 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>WahineKai.Common</RootNamespace>
     <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <PackageId>WahineKai.Common</PackageId>
+    <Version>1.0.0</Version>
+    <Company>Wahine Kai</Company>
+    <PackageDescription>Common helper files for common case including validation, input sanity checking, etc.</PackageDescription>
+    <RepositoryUrl>https://github.com/wahinekai/common</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
