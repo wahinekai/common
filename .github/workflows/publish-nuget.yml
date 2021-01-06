@@ -32,28 +32,15 @@ jobs:
         run: dotnet restore ${{ env.PROJECT_FILE_PATH }}
 
       - name: Build
-        run: dotnet build ${{ env.PROJECT_FILE_PATH }} \
-          --no-restore \
-          /p:VersionPrefix=${{ env.VERSION }} \
-          --configuration ${{ env.CONFIG }} \
-          -o out
+        run: dotnet build ${{ env.PROJECT_FILE_PATH }} --no-restore /p:VersionPrefix=${{ env.VERSION }} --configuration ${{ env.CONFIG }} -o out
 
       - name: Test
         if: ${{ env.TEST == 'true' }}
-        run: dotnet test ${{ env.PROJECT_FILE_PATH }} \
-          --no-build \
-          --configuration ${{ env.CONFIG }} \
-          -o out
+        run: dotnet test ${{ env.PROJECT_FILE_PATH }} --no-build --no-restore --configuration ${{ env.CONFIG }} -o out
 
       - name: Package
-        run: dotnet pack ${{ env.PROJECT_FILE_PATH }} \
-          --no-build \
-          --configuration ${{ env.CONFIG }} \
-          /p:Version=${{ env.VERSION }} \
-          -o packages
+        run: dotnet pack ${{ env.PROJECT_FILE_PATH }} --no-build --configuration ${{ env.CONFIG }} /p:Version=${{ env.VERSION }} -o packages
 
       - name: NuGet Push
         run: |
-          dotnet nuget push packages/*.nupkg \
-            --source ${{ env.NUGET_URL }} \
-            --skip-duplicate
+          dotnet nuget push packages/*.nupkg --source ${{ env.NUGET_URL }} --skip-duplicate
