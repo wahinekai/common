@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Build, Test, and Publish NuGet
-        uses: wahinekai/actions-publish-nuget@v1.1.0
+        uses: wahinekai/actions-publish-nuget@v1.1.1
         with:
           version-prefix: 1.0
           project-path: src/Common/Common.csproj
